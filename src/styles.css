@@ -1,0 +1,34 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.navbarItem {
+  @apply hover:scale-105 font-semibold cursor-pointer uppercase;
+}
+
+.btn-index {
+  @apply bg-black px-2 py-1 hover:bg-gray-900 cursor-pointer rounded-xl text-xl;
+}
+.btn-tours {
+  @apply z-40 text-center bg-gray-50 border-2 border-[#00061A] text-[#00061A] text-lg font-bold px-2 py-1 cursor-pointer rounded-md hover:bg-[#00061A] hover:text-white;
+}
+
+.btn-tours-selected {
+  @apply z-40 text-center   bg-[#00061A]  border-2 border-[#00061A] text-white text-lg font-bold px-2 py-1 cursor-pointer rounded-md hover:bg-[#00061A] hover:text-white;
+}
+.whatsappColor {
+  background-color: #25d366;
+  color: white;
+}
+.facebook {
+  background-color: #1877f2;
+  color: white;
+}
+.instagram {
+  background-color: #e4405f;
+  color: white;
+}
+.twitter {
+  background-color: #1da1f2;
+  color: white;
+}

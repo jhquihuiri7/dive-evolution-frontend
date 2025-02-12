@@ -1,0 +1,157 @@
+<div class="bg-gradient-to-r w-full absolute top-0 z-50">
+  <div class="max-w-screen-2xl mx-auto">
+    <!-- Menu -->
+    <div class="flex">
+      <div
+        class="flex items-center text-white uppercase font-semibold text-lg ml-3 md:ml-7 py-2"
+      >
+        <img src="{{ images?.logo }}" alt="" class="h-20" />
+        <p class="ml-1">Dive Evolution</p>
+        <!-- Botton celular -->
+        <button
+          class="lg:hidden right-10 absolute border-2 bg-black py-2 px-4 rounded hover:bg-white hover:text-black"
+          (click)="abrir()"
+        >
+          <i class="{{ icono[indice] }}"></i>
+        </button>
+
+        <!--* Botton Lenguajes -->
+        <!-- <div class="hidden lg:grid gap-1 grid-cols-3 absolute right-1">
+          <button *ngFor="let flag of flags; let pos = index" class="">
+            <img
+              class="h-9 mx-1 cursor-pointer hover:scale-110"
+              [src]="flag"
+              (click)="selectFlag(pos)"
+              ngClass="{{
+                selectedFlag === pos
+                  ? 'border-white border rounded-md px-1'
+                  : ''
+              }}"
+            />
+          </button>
+        </div> -->
+
+        <div
+          class="py-3 text-center font-semibold text-base hover:text-white rounded-md flex justify-around"
+        ></div>
+      </div>
+      <div
+        class="flex gap-6 ml-24 text-white hidden lg:block lg:flex lg:items-center"
+      >
+        <a class="navbarItem" [routerLink]="rutas[0]">{{
+          "inicio" | translate
+        }}</a>
+        <a class="navbarItem" [routerLink]="rutas[1]">{{
+          "nosotros" | translate
+        }}</a>
+        <button
+          (click)="abrirTours()"
+          class="font-semibold cursor-pointer uppercase"
+        >
+          {{ "tours" | translate }}
+
+          <span class="rounded-lg">
+            <i class="{{ iconoTour[indiceTour] }}"></i>
+            <div
+              class="absolute mt-1 rounded-lg bg-black duration-700"
+              [ngClass]="!abiertoTours ? 'scale-0 hidden' : ''"
+            >
+              <a
+                class="px-3 py-3 text-white text-sm hover:bg-neutral-900 hover:rounded-lg grid"
+                [routerLink]="rutas[2]"
+              >
+                {{ "San Cristobal" }}
+              </a>
+              <!-- <a
+                class="px-3 py-3 text-white text-sm hover:bg-neutral-900 hover:rounded-lg grid"
+                [routerLink]="rutas[5]"
+              >
+                {{ "Santa Cruz" }}
+              </a>
+              <a
+                class="px-3 py-3 text-white text-sm hover:bg-neutral-900 hover:rounded-lg grid"
+                [routerLink]="rutas[6]"
+              >
+                {{ "Isabela" }}
+              </a> -->
+            </div>
+          </span>
+        </button>
+        <a class="navbarItem" [routerLink]="rutas[3]">{{
+          "cursos de buceo" | translate
+        }}</a>
+        <a class="navbarItem" [routerLink]="rutas[4]">{{
+          "contacto" | translate
+        }}</a>
+      </div>
+    </div>
+
+    <!-- Menu responsivo -->
+    <div
+      class="grid bg-white lg:hidden border-t border-b z-50"
+      *ngIf="indice == 1"
+      data-aos="fade-down"
+    >
+      <a
+        [routerLink]="rutas[0]"
+        class="py-3 text-center font-semibold text-base hover:text-white hover:bg-black rounded-md cursor-pointer"
+        >{{ "inicio" | translate }}</a
+      >
+      <a
+        [routerLink]="rutas[1]"
+        class="py-3 text-center font-semibold text-base hover:text-white hover:bg-black rounded-md cursor-pointer"
+        >{{ "nosotros" | translate }}</a
+      >
+      <button
+        class="py-3 text-center font-semibold text-base hover:text-white hover:bg-black rounded-md cursor-pointer"
+        (click)="abrirTours()"
+      >
+        {{ "tours" | translate }} <i class="{{ iconoTour[indiceTour] }}"></i>
+      </button>
+      <div
+        class="grid bg-black text-white duration-700"
+        [ngClass]="!abiertoTours ? 'scale-0 hidden' : ''"
+      >
+        <a
+          class="py-3 text-center font-semibold text-base hover:bg-white hover:text-black cursor-pointer"
+          [routerLink]="rutas[2]"
+          >{{ "San Cristobal" }}</a
+        >
+        <!-- <a
+          class="py-3 text-center font-semibold text-base hover:bg-white hover:text-black cursor-pointer"
+          [routerLink]="rutas[5]"
+          >{{ "Santa Cruz" }}</a
+        >
+        <a
+          class="py-3 text-center font-semibold text-base hover:bg-white hover:text-black cursor-pointer"
+          [routerLink]="rutas[6]"
+          >{{ "Isabela" }}</a
+        > -->
+      </div>
+      <a
+        class="py-3 text-center font-semibold text-base hover:text-white hover:bg-black rounded-md cursor-pointer"
+        [routerLink]="rutas[3]"
+        >{{ "cursos de buceo" | translate }}</a
+      >
+      <a
+        class="py-3 text-center font-semibold text-base hover:text-white hover:bg-black rounded-md cursor-pointer"
+        [routerLink]="rutas[4]"
+        >{{ "contacto" | translate }}</a
+      >
+      <!-- <div
+        class="py-3 text-center font-semibold text-base hover:text-white rounded-md flex justify-around"
+      >
+        <button *ngFor="let flag of flags; let pos = index" class="">
+          <img
+            class="h-9 cursor-pointer mx-1 hover:scale-110"
+            [src]="flag"
+            (click)="selectFlag(pos)"
+            ngClass="{{
+              selectedFlag === pos ? 'border-black border rounded-md px-1' : ''
+            }}"
+          />
+        </button>
+      </div> -->
+    </div>
+  </div>
+</div>

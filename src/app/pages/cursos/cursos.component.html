@@ -1,0 +1,150 @@
+<div
+  class="h-136 w-full bg-cover bg-top bg-no-repeat flex justify-center items-center"
+  style="
+    background-image: url('https://res.cloudinary.com/logicielapplab/image/upload/v1653794137/DiveEvolution/Hero/cursos_chju78.jpg');
+  "
+>
+  <div class="text-5xl lg:text-7xl text-white" data-aos="fade-down">
+    <p class="text-center">{{ "Cursos de buceo" | translate }}</p>
+  </div>
+</div>
+
+<!-- *ngIf="selectedButton === 1" -->
+<p class="text-center text-3xl font-bold pt-3">
+  {{ "Metodología" | translate }}
+</p>
+
+<div *ngIf="data !== undefined && data !== null">
+  <div class="max-w-6xl mx-auto">
+    <div class="hidden md:grid grid-cols-3 mt-6 mx-4">
+      <div *ngFor="let item of data!.methodology!.methods; let i = index">
+        <div class="flex relative justify-center z-10">
+          <div
+            class="bottom-16 absolute  pb-16 {{
+              selected === i
+                ? 'visible animate__animated animate__fadeIn animate__faster'
+                : 'invisible'
+            }}"
+            (mouseover)="selected = i"
+            (mouseout)="selected = 3"
+          >
+            <div class="bg-white/95 rounded-xl border p-6">
+              <p class="text-center text-lg font-medium">{{ item!.title }}</p>
+              <p>{{ item!.description }}</p>
+              <p>{{ item!.question1 }}</p>
+              <p>{{ item!.work }}</p>
+              <p>{{ item!.question2 }}</p>
+              <ol class="pl-9">
+                <li class="list-disc" *ngFor="let advantage of item.advantages">
+                  {{ advantage }}
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <img
+            *ngIf="dataImg !== undefined && dataImg !== null"
+            class="w-24 h-24 object-cover rounded hover:cursor-pointer"
+            src="{{ dataImg!.methodsImg[i] }}"
+            alt=""
+            (mouseover)="selected = i"
+            (mouseout)="selected = 3"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile -->
+<div *ngIf="data !== undefined && data !== null" class="pt-7 md:hidden">
+  <div
+    *ngFor="let item of data.methodology.methods; let i = index"
+    class="grid mb-7"
+    data-aos="fade-down"
+  >
+    <div
+      class="md:grid md:grid-cols-3 rounded-xl border shadow-2xl shadow-blue-200"
+    >
+      <div class="flex justify-center pt-4">
+        <img
+          *ngIf="dataImg !== undefined && dataImg !== null"
+          class="w-24 h-24 object-cover rounded"
+          src="{{ dataImg!.methodsImg[i] }}"
+          alt=""
+        />
+      </div>
+      <div class="md:col-span-2 pl-4 py-4 pr-7">
+        <p class="text-center text-lg font-medium">{{ item!.title }}</p>
+        <p>{{ item!.description }}</p>
+        <p>{{ item!.question1 }}</p>
+        <p>{{ item!.work }}</p>
+        <p>{{ item!.question2 }}</p>
+        <ol class="pl-9">
+          <li class="list-disc" *ngFor="let advantage of item.advantages">
+            {{ advantage }}
+          </li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- *ngIf="selectedButton === 0" -->
+<p class="text-center text-3xl font-bold pt-10 pb-5">
+  {{ "Tipo de cursos" | translate }}
+</p>
+<div *ngIf="data !== undefined && data !== null" class="grid max-w-5xl mx-auto">
+  <div>
+    <div
+      *ngFor="let item of data!.courseTypes; let i = index"
+      class="grid mb-7"
+      data-aos="fade-down"
+    >
+      <div
+        class="md:grid md:grid-cols-3 rounded-xl border shadow-2xl shadow-blue-200"
+      >
+        <div class="m-4 md:m-0">
+          <img
+            *ngIf="dataImg !== undefined && dataImg !== null"
+            class="w-full h-full object-cover rounded"
+            src="{{ dataImg!.coursesImg[i] }}"
+            alt=""
+          />
+        </div>
+        <div class="md:col-span-2 pl-4 py-4 pr-7">
+          <div class="flex justify-between">
+            <p class="text-center text-lg font-medium">{{ item!.title }}</p>
+            <p class="text-right text-lg font-bold">${{ item!.price }}</p>
+          </div>
+          <p>{{ item!.description }}</p>
+          <ol class="pl-9">
+            <li class="list-disc" *ngFor="let include of item.included">
+              {{ include }}
+            </li>
+          </ol>
+          <div class="text-center md:text-right">
+            <a routerLink="{{ '/cursos/' + item!.ref }}" class="{{ btn }}">{{
+              "Ver más" | translate
+            }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div
+      class="absolute p-4 bg-white rounded-xl border -translate-y-140 md:-translate-y-80 xl:-translate-y-72 2xl:-translate-y-68"
+    >
+      <p class="text-center text-lg font-medium">{{ item!.title }}</p>
+      <p>{{ item!.description }}</p>
+      <p>{{ item!.question1 }}</p>
+      <p>{{ item!.work }}</p>
+      <p>{{ item!.question2 }}</p>
+      <ol class="pl-9">
+        <li class="list-disc" *ngFor="let advantage of item.advantages">
+          {{ advantage }}
+        </li>
+      </ol>
+    </div> -->

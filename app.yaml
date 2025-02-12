@@ -1,0 +1,10 @@
+runtime: nodejs22  # Usa la versión de Node.js compatible con App Engine
+
+handlers:
+  - url: /(.*\.(css|js|ico|png|jpg|svg|json|html))$
+    static_files: dist/DiveEvolutionWeb/browser/\1
+    upload: dist/DiveEvolutionWeb/browser/.*\.(css|js|ico|png|jpg|svg|json|html)
+
+  - url: /.*
+    static_files: dist/DiveEvolutionWeb/browser/index.html
+    upload: dist/DiveEvolutionWeb/browser/index.html
