@@ -1,0 +1,46 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overflow-x: hidden;
+}
+
+.navbarItem {
+  @apply cursor-pointer font-semibold uppercase hover:scale-105;
+}
+
+.btn-index {
+  @apply cursor-pointer rounded-xl bg-black px-2 py-1 text-xl hover:bg-gray-900;
+}
+
+.btn-tours {
+  @apply z-40 cursor-pointer rounded-md border-2 border-[#00061A] bg-gray-50 px-2 py-1 text-center text-lg font-bold text-[#00061A] hover:bg-[#00061A] hover:text-white;
+}
+
+.btn-tours-selected {
+  @apply z-40 cursor-pointer rounded-md border-2 border-[#00061A] bg-[#00061A] px-2 py-1 text-center text-lg font-bold text-white hover:bg-[#00061A] hover:text-white;
+}
+
+.whatsappColor {
+  background-color: #25d366;
+  color: white;
+}
+
+.facebook {
+  background-color: #1877f2;
+  color: white;
+}
+
+.instagram {
+  background-color: #e4405f;
+  color: white;
+}
+
+.twitter {
+  background-color: #1da1f2;
+  color: white;
+}
