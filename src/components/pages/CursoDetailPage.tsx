@@ -35,13 +35,13 @@ export default function CursoDetailPage() {
   return (
     <>
       <div
-        className="flex h-136 w-full items-center justify-center bg-cover bg-top bg-no-repeat"
+        className="flex h-112 w-full items-center justify-center bg-cover bg-top bg-no-repeat md:h-136"
         style={{
           backgroundImage:
             "url('https://res.cloudinary.com/logicielapplab/image/upload/v1653797087/DiveEvolution/Hero/lino-thaesler-3MwuQq6v7eU-unsplash_1_s58aan_qxlcuh.jpg')"
         }}
       >
-        <div className="text-5xl text-white lg:text-7xl" data-aos="fade-down">
+        <div className="text-4xl text-white md:text-5xl lg:text-7xl" data-aos="fade-down">
           <p className="text-center">{t("Cursos")}</p>
         </div>
       </div>
@@ -67,7 +67,7 @@ export default function CursoDetailPage() {
               >
                 {(dataImg?.img ?? []).map((image: string) => (
                   <SwiperSlide key={image}>
-                    <img className="h-auto w-full rounded-xl object-cover object-center" src={image} alt="" />
+                    <img className="h-auto w-full rounded-xl object-cover object-center" src={image} alt="" loading="lazy" decoding="async" />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -84,7 +84,7 @@ export default function CursoDetailPage() {
               >
                 {(dataImg?.img ?? []).map((image: string) => (
                   <SwiperSlide key={`${image}-thumb`}>
-                    <img className="mt-2 h-auto w-full rounded-xl object-cover object-center" src={image} alt="" />
+                    <img className="mt-2 h-auto w-full rounded-xl object-cover object-center" src={image} alt="" loading="lazy" decoding="async" />
                   </SwiperSlide>
                 ))}
               </Swiper>
@@ -92,9 +92,9 @@ export default function CursoDetailPage() {
 
             <div className="h-full rounded-3xl bg-indigo-600 text-white" data-aos="fade-down">
               <div className="m-6">
-                <div className="flex pb-2 pt-4 md:pt-0">
-                  <p className="text-5xl font-medium">{data?.course?.title}</p>
-                  <p className="ml-12 text-5xl font-semibold">${data?.course?.price}</p>
+                <div className="flex flex-col gap-2 pb-2 pt-4 md:flex-row md:items-start md:gap-6 md:pt-0">
+                  <p className="break-words text-3xl font-medium md:text-5xl">{data?.course?.title}</p>
+                  <p className="text-3xl font-semibold md:text-5xl">${data?.course?.price}</p>
                 </div>
                 <p className="py-4 text-lg">{data?.course?.description}</p>
                 <p className="pb-3 text-lg font-bold">{t("Itinerario")}:</p>

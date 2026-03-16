@@ -33,9 +33,9 @@ export default function InicioPage() {
           style={{ backgroundImage: `url('${backGroundImg}')` }}
         >
           <div className="pt-32 text-center text-white" data-aos="fade-down">
-            <p className="pb-24 text-3xl lg:text-7xl">{data?.body?.title}</p>
-            <p className="pb-5 text-3xl lg:text-5xl">{data?.body?.subtitle}</p>
-            <p className="pb-24 text-3xl lg:text-3xl">{data?.body?.little}</p>
+            <p className="px-4 pb-24 text-3xl lg:text-7xl">{data?.body?.title}</p>
+            <p className="px-4 pb-5 text-3xl lg:text-5xl">{data?.body?.subtitle}</p>
+            <p className="px-4 pb-24 text-2xl lg:text-3xl">{data?.body?.little}</p>
             <Link className="btn-index" href="/nosotros">
               {data?.body?.button}
             </Link>
@@ -52,7 +52,7 @@ export default function InicioPage() {
             <div className="md:mr-8">
               <div className="z-10 max-w-xs rounded-2xl bg-indigo-600 bg-opacity-40" data-aos="fade-down">
                 <div className="flex justify-center py-7">
-                  <img className="h-20" src={priceImg[1]} alt="" />
+                  <img className="h-20" src={priceImg[1]} alt="" loading="lazy" decoding="async" />
                 </div>
                 <p className="text-center text-2xl font-bold">{price[0]}</p>
                 <p className="mx-5 pb-7 text-lg font-semibold">{price[1]}</p>
@@ -66,7 +66,7 @@ export default function InicioPage() {
             <div className="md:ml-8">
               <div className="z-10 max-w-xs rounded-2xl bg-black bg-opacity-50" data-aos="fade-down">
                 <div className="flex justify-center py-7">
-                  <img className="h-20" src={qualityImg[1]} alt="" />
+                  <img className="h-20" src={qualityImg[1]} alt="" loading="lazy" decoding="async" />
                 </div>
                 <p className="text-center text-2xl font-bold">{quality[0]}</p>
                 <p className="mx-5 pb-7 text-lg font-semibold">{quality[1]}</p>

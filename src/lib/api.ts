@@ -1,7 +1,47 @@
 const BASE_URL = "https://diveevolutiongpsbackend.uc.r.appspot.com";
 const MAIL_BASE_URL = "https://mailservicebackend.uc.r.appspot.com/api/standardMail";
 
-async function getJson<T>(url: string): Promise<T> {
+type CacheEntry<T> = {
+  expiresAt: number;
+  value: Promise<T>;
+};
+
+const CACHE_TTL_MS = 5 * 60 * 1000;
+const requestCache = new Map<string, CacheEntry<any>>();
+
+async function getJson<T>(url: string, { useCache = true }: { useCache?: boolean } = {}): Promise<T> {
+  if (useCache) {
+    const cached = requestCache.get(url);
+    if (cached && cached.expiresAt > Date.now()) {
+      return cached.value;
+    }
+  }
+
+  const request = fetch(url, { cache: "no-store" }).then(async (response) => {
+    if (!response.ok) {
+      throw new Error(`Request failed: ${response.status}`);
+    }
+    return response.json() as Promise<T>;
+  });
+
+  if (useCache) {
+    requestCache.set(url, {
+      expiresAt: Date.now() + CACHE_TTL_MS,
+      value: request
+    });
+  }
+
+  try {
+    return await request;
+  } catch (error) {
+    if (useCache) {
+      requestCache.delete(url);
+    }
+    throw error;
+  }
+}
+
+async function getNoCacheJson<T>(url: string): Promise<T> {
   const response = await fetch(url, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`Request failed: ${response.status}`);
@@ -25,8 +65,8 @@ export const api = {
   getCourseInfo: (lang: string, id: string) => getJson<any>(`${BASE_URL}/api/getCourseInfo/${lang}/${id}`),
   getCourseInfoImg: (id: string) => getJson<any>(`${BASE_URL}/api/getCourseInfoImg/${id}`),
 
-  getContact: (lang: string) => getJson<any>(`${BASE_URL}/api/getContact/${lang}`),
-  getContactImg: () => getJson<any>(`${BASE_URL}/api/getContactImg`),
+  getContact: (lang: string) => getNoCacheJson<any>(`${BASE_URL}/api/getContact/${lang}`),
+  getContactImg: () => getNoCacheJson<any>(`${BASE_URL}/api/getContactImg`),
 
   getTours: (lang: string, island: "sc" | "sx" | "ib") =>
     getJson<any>(`${BASE_URL}/api/getTours/${lang}/${island}`),

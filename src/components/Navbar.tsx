@@ -25,20 +25,20 @@ export default function Navbar({ routes }: NavbarProps) {
   return (
     <div className="absolute top-0 z-50 w-full bg-gradient-to-r">
       <div className="mx-auto max-w-screen-2xl">
-        <div className="flex">
+        <div className="flex items-center">
           <div className="ml-3 flex items-center py-2 text-lg font-semibold uppercase text-white md:ml-7">
-            <img src={images?.logo} alt="" className="h-20" />
+            <img src={images?.logo} alt="Dive Evolution" className="h-16 md:h-20" fetchPriority="high" decoding="async" />
             <p className="ml-1">Dive Evolution</p>
 
             <button
-              className="absolute right-10 rounded border-2 bg-black px-4 py-2 hover:bg-white hover:text-black lg:hidden"
+              className="absolute right-4 rounded border-2 bg-black px-4 py-2 hover:bg-white hover:text-black sm:right-10 lg:hidden"
               onClick={() => setAbierto((value) => !value)}
             >
               <i className={icono[abierto ? 1 : 0]} />
             </button>
           </div>
 
-          <div className="ml-24 hidden items-center gap-6 text-white lg:flex lg:block">
+          <div className="ml-8 hidden items-center gap-5 text-white xl:ml-24 xl:gap-6 lg:flex lg:block">
             <Link className="navbarItem" href={routes[0]}>
               {t("inicio")}
             </Link>

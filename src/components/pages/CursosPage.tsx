@@ -19,13 +19,13 @@ export default function CursosPage() {
   return (
     <>
       <div
-        className="flex h-136 w-full items-center justify-center bg-cover bg-top bg-no-repeat"
+        className="flex h-112 w-full items-center justify-center bg-cover bg-top bg-no-repeat md:h-136"
         style={{
           backgroundImage:
             "url('https://res.cloudinary.com/logicielapplab/image/upload/v1653794137/DiveEvolution/Hero/cursos_chju78.jpg')"
         }}
       >
-        <div className="text-5xl text-white lg:text-7xl" data-aos="fade-down">
+        <div className="text-4xl text-white md:text-5xl lg:text-7xl" data-aos="fade-down">
           <p className="text-center">{t("cursos de buceo")}</p>
         </div>
       </div>
@@ -65,6 +65,8 @@ export default function CursosPage() {
                     className="h-24 w-24 rounded object-cover hover:cursor-pointer"
                     src={dataImg?.methodsImg?.[index]}
                     alt=""
+                    loading="lazy"
+                    decoding="async"
                     onMouseOver={() => setSelected(index)}
                     onMouseOut={() => setSelected(3)}
                   />
@@ -81,7 +83,7 @@ export default function CursosPage() {
             <div key={`${item?.title}-${index}`} className="mb-7 grid" data-aos="fade-down">
               <div className="rounded-xl border shadow-2xl shadow-blue-200 md:grid md:grid-cols-3">
                 <div className="flex justify-center pt-4">
-                  <img className="h-24 w-24 rounded object-cover" src={dataImg?.methodsImg?.[index]} alt="" />
+                  <img className="h-24 w-24 rounded object-cover" src={dataImg?.methodsImg?.[index]} alt="" loading="lazy" decoding="async" />
                 </div>
                 <div className="py-4 pl-4 pr-7 md:col-span-2">
                   <p className="text-center text-lg font-medium">{item?.title}</p>
@@ -109,9 +111,9 @@ export default function CursosPage() {
         <div className="mx-auto grid max-w-5xl">
           {(data?.courseTypes ?? []).map((item: any, index: number) => (
             <div key={`${item?.ref}-${index}`} className="mb-7 grid" data-aos="fade-down">
-              <div className="rounded-xl border shadow-2xl shadow-blue-200 md:grid md:grid-cols-3">
+              <div className="mx-4 rounded-xl border shadow-2xl shadow-blue-200 md:mx-0 md:grid md:grid-cols-3">
                 <div className="m-4 md:m-0">
-                  <img className="h-full w-full rounded object-cover" src={dataImg?.coursesImg?.[index]} alt="" />
+                  <img className="h-full w-full rounded object-cover" src={dataImg?.coursesImg?.[index]} alt="" loading="lazy" decoding="async" />
                 </div>
                 <div className="py-4 pl-4 pr-7 md:col-span-2">
                   <div className="flex justify-between">

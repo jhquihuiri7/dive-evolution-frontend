@@ -5,7 +5,11 @@ import AOS from "aos";
 
 export default function AOSInit() {
   useEffect(() => {
-    AOS.init();
+    AOS.init({
+      once: true,
+      duration: 700,
+      easing: "ease-out-cubic"
+    });
     const refresh = () => AOS.refresh();
     window.addEventListener("load", refresh);
     return () => window.removeEventListener("load", refresh);

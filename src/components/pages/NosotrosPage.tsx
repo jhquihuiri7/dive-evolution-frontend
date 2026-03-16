@@ -57,7 +57,7 @@ export default function NosotrosPage() {
             <p className="pb-4 pt-7 text-center text-lg font-bold md:pt-0">{data?.history?.answer}</p>
             <div className="flex justify-center">
               <a href="https://www.pssworldwide.org/es/default.aspx" target="_blank" rel="noreferrer">
-                <img className="mb-12 h-36 object-cover" src={dataImg?.historyImg?.logo} alt="" />
+                <img className="mb-12 h-36 object-cover" src={dataImg?.historyImg?.logo} alt="" loading="lazy" decoding="async" />
               </a>
             </div>
           </div>
@@ -65,7 +65,7 @@ export default function NosotrosPage() {
       </div>
 
       <div
-        className="flex h-136 w-full items-center bg-cover bg-center bg-no-repeat text-white"
+        className="flex w-full items-center bg-cover bg-center bg-no-repeat py-10 text-white md:h-136 md:py-0"
         style={{ backgroundImage: `url('${dataImg?.missionImg}')` }}
       >
         <div className="mx-8 lg:mx-20 lg:grid lg:grid-cols-3 2xl:mx-32" data-aos="fade-right">
@@ -83,7 +83,7 @@ export default function NosotrosPage() {
       </div>
 
       <div
-        className="flex h-136 w-full items-center bg-cover bg-center bg-no-repeat text-white"
+        className="flex w-full items-center bg-cover bg-center bg-no-repeat py-10 text-white md:h-136 md:py-0"
         style={{ backgroundImage: `url('${dataImg?.vissionImg}')` }}
       >
         <div className="mx-8 lg:mx-20 lg:grid lg:grid-cols-3 2xl:mx-32" data-aos="fade-down">
@@ -100,7 +100,7 @@ export default function NosotrosPage() {
         </div>
       </div>
 
-      <div className="flex h-128 w-full items-center bg-black text-white">
+      <div className="flex w-full items-center bg-black py-10 text-white md:h-128 md:py-0">
         <div className="mx-8 lg:mx-20 lg:grid lg:grid-cols-3 2xl:mx-32" data-aos="fade-right">
           <div className="col-span1">
             <div className="font-semibold">

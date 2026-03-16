@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
@@ -34,7 +33,6 @@ export default function RootLayout({
           {children}
         </main>
         <Footer routes={routes} />
-        <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
       </body>
     </html>
   );

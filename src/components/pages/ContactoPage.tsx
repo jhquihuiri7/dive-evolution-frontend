@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import Script from "next/script";
 import Swal from "sweetalert2";
 import { api } from "@/src/lib/api";
 import { useLanguage } from "@/src/hooks/useLanguage";
@@ -35,10 +36,13 @@ export default function ContactoPage() {
   useEffect(() => {
     api.getContact(lang).then(setDatosContacto).catch(() => null);
     api.getContactImg().then(setContactoImg).catch(() => null);
-    api.getFooter(lang).then((data) => {
-      setSocialMedia(data?.social_media ?? null);
-      setPhone(data?.phone ?? "");
-    }).catch(() => null);
+    api
+      .getFooter(lang)
+      .then((data) => {
+        setSocialMedia(data?.social_media ?? null);
+        setPhone(data?.phone ?? "");
+      })
+      .catch(() => null);
   }, [lang]);
 
   const errors = useMemo(() => {
@@ -97,20 +101,31 @@ export default function ContactoPage() {
 
   return (
     <>
+      <Script src="https://www.google.com/recaptcha/api.js" strategy="afterInteractive" />
+
       {contactoImg && (
         <div
-          className="h-180 w-full bg-cover bg-center bg-no-repeat md:h-156"
+          className="w-full bg-cover bg-center bg-no-repeat pt-20 md:h-156 md:pt-0"
           style={{ backgroundImage: `url('${contactoImg?.background}')` }}
         >
-          <div className="mx-4 pt-20 md:mx-0 md:pt-0">
-            <div className="mx-auto max-w-4xl px-6 pb-6 pt-6 text-5xl text-white md:pb-6 lg:text-7xl" data-aos="fade-down">
+          <div className="mx-4 md:mx-0">
+            <div
+              className="mx-auto max-w-4xl px-6 pb-6 pt-6 text-5xl text-white md:pb-6 lg:text-7xl"
+              data-aos="fade-down"
+            >
               <p className="text-center md:translate-y-36 md:text-right">{datosContacto?.title}</p>
             </div>
             <div className="mx-auto max-w-4xl">
-              <div className="grid h-120 md:grid-cols-2">
+              <div className="grid gap-6 pb-8 md:h-120 md:grid-cols-2 md:gap-0 md:pb-0">
                 <div>
                   <div className="flex h-96 w-full items-center justify-center md:h-140 md:-translate-y-20" data-aos="fade-up">
-                    <img className="h-80 w-auto md:h-96" src={contactoImg?.foreground} alt="" />
+                    <img
+                      className="h-72 w-auto md:h-96"
+                      src={contactoImg?.foreground}
+                      alt=""
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </div>
                   <div className="mx-6 mb-8 flex md:-translate-y-28">
                     <a
@@ -125,7 +140,7 @@ export default function ContactoPage() {
                 </div>
 
                 <div className="flex items-center md:-translate-y-28" data-aos="fade-down">
-                  <div className="grid gap-10 bg-black bg-opacity-50 py-14 pl-10 pr-6 text-lg text-white">
+                  <div className="grid gap-10 bg-black bg-opacity-50 py-10 pl-6 pr-6 text-lg text-white md:py-14 md:pl-10">
                     <p className="text-center text-xl">{datosContacto?.introduction}</p>
                     <p>
                       <i className="fa-solid fa-location-dot pr-4" />
@@ -179,98 +194,102 @@ export default function ContactoPage() {
         </div>
       )}
 
-      <div className="w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${contactoImg?.form}')` }}>
-        <div className="mx-auto max-w-4xl py-20">
-          <form onSubmit={onSubmit}>
-            <div className="mx-4 grid text-white" data-aos="fade-up">
-              <p className="pb-3 text-2xl font-semibold">{datosContacto?.formtitle}</p>
+      {contactoImg && (
+        <div className="w-full bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url('${contactoImg?.form}')` }}>
+          <div className="mx-auto max-w-4xl py-20">
+            <form onSubmit={onSubmit}>
+              <div className="mx-4 grid text-white" data-aos="fade-up">
+                <p className="pb-3 text-2xl font-semibold">{datosContacto?.formtitle}</p>
 
-              <div className="mb-8 grid">
-                <input
-                  className="rounded-md border border-gray-300 p-2 text-black"
-                  type="text"
-                  value={form.nombre}
-                  onBlur={() => setTouched((value) => ({ ...value, nombre: true }))}
-                  onChange={(event) => setField("nombre", event.target.value)}
-                  placeholder={t("Nombre")}
-                />
-                {touched.nombre && errors.nombre && (
-                  <div className="text-right text-base font-light">
-                    <span>{t("Ingrese un nombre")}</span>
-                  </div>
-                )}
-              </div>
+                <div className="mb-8 grid">
+                  <input
+                    className="rounded-md border border-gray-300 p-2 text-black"
+                    type="text"
+                    value={form.nombre}
+                    onBlur={() => setTouched((value) => ({ ...value, nombre: true }))}
+                    onChange={(event) => setField("nombre", event.target.value)}
+                    placeholder={t("Nombre")}
+                  />
+                  {touched.nombre && errors.nombre && (
+                    <div className="text-right text-base font-light">
+                      <span>{t("Ingrese un nombre")}</span>
+                    </div>
+                  )}
+                </div>
 
-              <div className="mb-8 grid">
-                <input
-                  className="rounded-md border border-gray-300 p-2 text-black"
-                  type="email"
-                  value={form.email}
-                  onBlur={() => setTouched((value) => ({ ...value, email: true }))}
-                  onChange={(event) => setField("email", event.target.value)}
-                  placeholder={t("Correo electrónico")}
-                />
-                {touched.email && errors.email && (
-                  <div className="text-right text-base font-light">
-                    <span>{t("Ingrese un correo electrónico válido")}</span>
-                  </div>
-                )}
-              </div>
+                <div className="mb-8 grid">
+                  <input
+                    className="rounded-md border border-gray-300 p-2 text-black"
+                    type="email"
+                    value={form.email}
+                    onBlur={() => setTouched((value) => ({ ...value, email: true }))}
+                    onChange={(event) => setField("email", event.target.value)}
+                    placeholder={t("Correo electrónico")}
+                  />
+                  {touched.email && errors.email && (
+                    <div className="text-right text-base font-light">
+                      <span>{t("Ingrese un correo electrónico válido")}</span>
+                    </div>
+                  )}
+                </div>
 
-              <div className="mb-8 grid">
-                <input
-                  className="rounded-md border border-gray-300 p-2 text-black"
-                  type="text"
-                  value={form.telefono}
-                  onBlur={() => setTouched((value) => ({ ...value, telefono: true }))}
-                  onChange={(event) => setField("telefono", event.target.value)}
-                  placeholder={t("Número teléfono")}
-                />
-                {touched.telefono && errors.telefono && (
-                  <span className="text-right text-base font-light">{t("Ingrese un número de teléfono válido")}</span>
-                )}
-              </div>
+                <div className="mb-8 grid">
+                  <input
+                    className="rounded-md border border-gray-300 p-2 text-black"
+                    type="text"
+                    value={form.telefono}
+                    onBlur={() => setTouched((value) => ({ ...value, telefono: true }))}
+                    onChange={(event) => setField("telefono", event.target.value)}
+                    placeholder={t("Número teléfono")}
+                  />
+                  {touched.telefono && errors.telefono && (
+                    <span className="text-right text-base font-light">{t("Ingrese un número de teléfono válido")}</span>
+                  )}
+                </div>
 
-              <div className="mb-8 grid">
-                <textarea
-                  className="rounded-md border border-gray-300 p-2 text-base text-black"
-                  rows={5}
-                  value={form.asunto}
-                  onBlur={() => setTouched((value) => ({ ...value, asunto: true }))}
-                  onChange={(event) => setField("asunto", event.target.value)}
-                  placeholder={t("Asunto")}
-                />
-                {touched.asunto && errors.asunto && (
-                  <span className="text-right text-base font-light">{t("Es necesario ingresar el asunto")}</span>
-                )}
-              </div>
+                <div className="mb-8 grid">
+                  <textarea
+                    className="rounded-md border border-gray-300 p-2 text-base text-black"
+                    rows={5}
+                    value={form.asunto}
+                    onBlur={() => setTouched((value) => ({ ...value, asunto: true }))}
+                    onChange={(event) => setField("asunto", event.target.value)}
+                    placeholder={t("Asunto")}
+                  />
+                  {touched.asunto && errors.asunto && (
+                    <span className="text-right text-base font-light">{t("Es necesario ingresar el asunto")}</span>
+                  )}
+                </div>
 
-              <div className="flex pb-3 md:justify-end md:pb-0">
-                <button
-                  type="submit"
-                  disabled={cargando}
-                  className="w-full rounded-lg bg-white py-2 text-center text-lg font-semibold text-black hover:bg-black hover:bg-opacity-50 hover:text-white md:w-auto md:px-4"
-                >
-                  {cargando ? <i className="fa-solid fa-spinner animate-spin" /> : t("Enviar")}
-                </button>
+                <div className="flex pb-3 md:justify-end md:pb-0">
+                  <button
+                    type="submit"
+                    disabled={cargando}
+                    className="w-full rounded-lg bg-white py-2 text-center text-lg font-semibold text-black hover:bg-black hover:bg-opacity-50 hover:text-white md:w-auto md:px-4"
+                  >
+                    {cargando ? <i className="fa-solid fa-spinner animate-spin" /> : t("Enviar")}
+                  </button>
+                </div>
               </div>
+            </form>
+          </div>
+
+          <p className="pb-3 text-center text-3xl text-white lg:text-4xl">{t("Encuentranos en:")}</p>
+          <div className="mx-auto w-full max-w-5xl px-2 pb-9 text-white" data-aos="fade-down">
+            <div className="aspect-[4/3] w-full overflow-hidden rounded-md md:aspect-[16/10]">
+              <iframe
+                title="Dive Evolution map"
+                className="h-full w-full"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAZaiVYZgI1rdT44_eVyJkDDe7cxymPCls&q=-0.9015997,-89.6108186"
+              />
             </div>
-          </form>
+          </div>
         </div>
-
-        <p className="pb-3 text-center text-3xl text-white lg:text-4xl">{t("Encuentranos en:")}</p>
-        <div className="mx-2 flex justify-center pb-9 text-white" data-aos="fade-down">
-          <iframe
-            width="800"
-            height="600"
-            style={{ border: 0 }}
-            loading="lazy"
-            allowFullScreen
-            referrerPolicy="no-referrer-when-downgrade"
-            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAZaiVYZgI1rdT44_eVyJkDDe7cxymPCls&q=-0.9015997,-89.6108186"
-          />
-        </div>
-      </div>
+      )}
     </>
   );
 }

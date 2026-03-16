@@ -25,10 +25,10 @@ export default function ToursPage({ island, title, backgroundImg }: ToursPagePro
   return (
     <>
       <div
-        className="flex h-136 w-full items-center justify-center bg-cover bg-center bg-no-repeat"
+        className="flex h-112 w-full items-center justify-center bg-cover bg-center bg-no-repeat md:h-136"
         style={{ backgroundImage: `url('${backgroundImg}')` }}
       >
-        <div className="text-5xl text-white lg:text-7xl" data-aos="fade-down">
+        <div className="text-4xl text-white md:text-5xl lg:text-7xl" data-aos="fade-down">
           <p className="text-center">{t(title)}</p>
         </div>
       </div>
@@ -53,9 +53,9 @@ export default function ToursPage({ island, title, backgroundImg }: ToursPagePro
             <div className="mx-auto grid max-w-5xl">
               {(data?.snorkel ?? []).map((item: any, index: number) => (
                 <div key={`${item?.ref}-${index}`} className="mb-7 grid" data-aos="fade-down">
-                  <div className="mx-auto border shadow-xl md:grid md:grid-cols-3">
+                  <div className="mx-4 w-auto border shadow-xl md:mx-auto md:grid md:max-w-5xl md:grid-cols-3">
                     <div className="m-4 md:m-0">
-                      <img src={dataImg?.snorkelImg?.[index]} alt="" className="h-full w-full rounded object-cover" />
+                      <img src={dataImg?.snorkelImg?.[index]} alt="" className="h-full w-full rounded object-cover" loading="lazy" decoding="async" />
                     </div>
                     <div className="py-4 pl-4 pr-7 md:col-span-2">
                       <div className="flex justify-between pb-2">
@@ -85,9 +85,9 @@ export default function ToursPage({ island, title, backgroundImg }: ToursPagePro
             <div className="mx-auto grid max-w-5xl">
               {(data?.dive ?? []).map((item: any, index: number) => (
                 <div key={`${item?.ref}-${index}`} className="mb-7 grid" data-aos="fade-down">
-                  <div className="mx-auto border shadow-xl md:grid md:grid-cols-3">
+                  <div className="mx-4 w-auto border shadow-xl md:mx-auto md:grid md:max-w-5xl md:grid-cols-3">
                     <div className="m-4 md:m-0">
-                      <img src={dataImg?.diveImg?.[index]} alt="" className="h-full w-full rounded object-cover" />
+                      <img src={dataImg?.diveImg?.[index]} alt="" className="h-full w-full rounded object-cover" loading="lazy" decoding="async" />
                     </div>
                     <div className="py-4 pl-4 pr-7 md:col-span-2">
                       <div className="flex justify-between">
@@ -117,9 +117,9 @@ export default function ToursPage({ island, title, backgroundImg }: ToursPagePro
             <div className="mx-auto grid max-w-5xl">
               {(data?.land ?? []).map((item: any, index: number) => (
                 <div key={`${item?.ref}-${index}`} className="mb-7 grid" data-aos="fade-down">
-                  <div className="mx-auto border shadow-xl md:grid md:grid-cols-3">
+                  <div className="mx-4 w-auto border shadow-xl md:mx-auto md:grid md:max-w-5xl md:grid-cols-3">
                     <div className="m-4 md:m-0">
-                      <img src={dataImg?.landImg?.[index]} alt="" className="h-full w-full rounded object-cover" />
+                      <img src={dataImg?.landImg?.[index]} alt="" className="h-full w-full rounded object-cover" loading="lazy" decoding="async" />
                     </div>
                     <div className="py-4 pl-4 pr-7 md:col-span-2">
                       <div className="flex justify-between">

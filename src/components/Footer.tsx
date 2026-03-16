@@ -44,35 +44,35 @@ export default function Footer({ routes }: FooterProps) {
 
       <div className="relative bg-[#00061A]">
         <div className="grid grid-cols-1 md:grid-cols-3">
-          <div className="absolute left-0 right-0 z-50 mx-auto flex items-center justify-center py-4 text-base font-semibold uppercase text-white md:relative md:left-0">
-            {imgData?.logo && <img src={imgData.logo} alt="" className="h-20 pr-5" />}
+          <div className="relative z-50 mx-auto flex items-center justify-center py-6 text-base font-semibold uppercase text-white md:absolute md:left-0 md:right-0 md:py-4">
+            {imgData?.logo && <img src={imgData.logo} alt="Dive Evolution" className="h-16 pr-5 md:h-20" loading="lazy" decoding="async" />}
             <div className="grid">
               <Link className="flex cursor-pointer items-center justify-between hover:scale-105" href={routes[0]}>
                 <p>{t("inicio")}</p>
-                {pathname === routes[0] && <img src="/assets/buzo.png" className="w-9" alt="" />}
+                {pathname === routes[0] && <img src="/assets/buzo.png" className="w-9" alt="" loading="lazy" decoding="async" />}
               </Link>
 
               <Link className="flex cursor-pointer items-center justify-between hover:scale-105" href={routes[1]}>
                 <p>{t("nosotros")}</p>
-                {pathname.startsWith("/nosotros") && <img src="/assets/buzo.png" className="w-9" alt="" />}
+                {pathname.startsWith("/nosotros") && <img src="/assets/buzo.png" className="w-9" alt="" loading="lazy" decoding="async" />}
               </Link>
 
               <Link className="flex cursor-pointer items-center justify-between hover:scale-105" href={routes[2]}>
                 <p>{t("tours")}</p>
-                {activeTours && <img src="/assets/buzo.png" className="w-9" alt="" />}
+                {activeTours && <img src="/assets/buzo.png" className="w-9" alt="" loading="lazy" decoding="async" />}
               </Link>
 
               <Link className="flex cursor-pointer items-center justify-between hover:scale-105" href={routes[4]}>
                 <p>{t("contacto")}</p>
-                {pathname.startsWith("/contacto") && <img src="/assets/buzo.png" className="w-9" alt="" />}
+                {pathname.startsWith("/contacto") && <img src="/assets/buzo.png" className="w-9" alt="" loading="lazy" decoding="async" />}
               </Link>
             </div>
           </div>
 
-          <div className="absolute left-0 right-0 z-50 mx-auto flex translate-y-48 justify-center md:relative md:left-0 md:translate-y-0 md:pt-3">
+          <div className="relative z-50 mx-auto flex justify-center pb-6 md:absolute md:left-0 md:right-0 md:translate-y-48 md:pb-0 md:pt-3">
             <div>
               <p className="text-center text-lg font-semibold uppercase text-white">{t("Encuentranos en nuestras redes")}</p>
-              <div className="flex justify-around pt-3 md:pt-6">
+              <div className="flex justify-around gap-3 pt-3 md:pt-6">
                 {socialMedia?.facebook && (
                   <a className="facebook fa-xl z-50 rounded-full bg-white px-1 py-1 hover:scale-105" href={socialMedia.facebook} target="_blank" rel="noreferrer">
                     <i className="fa-brands fa-facebook" />
@@ -93,7 +93,7 @@ export default function Footer({ routes }: FooterProps) {
           </div>
 
           <div
-            className="h-96 w-full bg-cover bg-center bg-no-repeat"
+            className="h-72 w-full bg-cover bg-center bg-no-repeat md:h-96"
             style={{
               backgroundImage:
                 "url('https://res.cloudinary.com/logicielapplab/image/upload/v1654662701/DiveEvolution/Hero/footer_ozw9ir.png')",
